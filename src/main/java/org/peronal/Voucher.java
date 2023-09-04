@@ -1,0 +1,27 @@
+package org.peronal;
+
+public class Voucher {
+    private Money value;
+    private String store;
+
+    Voucher(int amount, String currencyCode, String store) {
+        this.value = new Money(amount, currencyCode);
+        this.store = store;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Voucher))
+            return false;
+        Voucher other = (Voucher) o;
+        boolean valueEquals = (this.value == null && other.value == null)
+                || (this.value != null && this.value.equals(other.value)); // Note that the equals here is that implemented in the base class
+        boolean storeEquals = (this.store == null && other.store == null)
+                || (this.store != null && this.store.equals(other.store));
+        return valueEquals && storeEquals;
+    }
+
+    // other methods
+}
